@@ -264,17 +264,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--ob);color:var(--td);min-h
 <div class="msg-card">
   <div class="msg-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
   <h2>Could Not Auto-Load Data</h2>
-  <p id="err-msg">The sheet fetch may be blocked when opening this file locally.</p>
-  <p style="font-size:.82rem;color:#888;margin-top:8px">Open this file from a web server, or upload the CSV manually below.</p>
-  <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap">
+  <p id="err-msg">Check your connection and try again.</p>
+  <div style="margin-top:18px">
     <button class="btn btn-p" onclick="fetchSheet()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.73-4.5"/></svg>Try Again</button>
-    <label class="btn btn-o" style="background:var(--om);cursor:pointer">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-      Upload CSV
-      <input type="file" accept=".csv" style="display:none" onchange="handleManualCSV(this)">
-    </label>
   </div>
-  <p style="font-size:.75rem;color:#aaa;margin-top:12px">To get CSV: Google Sheet &rarr; File &rarr; Download &rarr; .csv</p>
 </div>
 </div>
 
