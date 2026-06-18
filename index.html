@@ -981,7 +981,7 @@ const CSV_URL  = 'https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/export?for
 
 // Last col: Week Notes
 
-const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 const PAL  = ['#153d0b','#c20002','#d4a017','#2563eb','#7c3aed','#0891b2','#059669','#9d174d','#ea580c','#1e40af'];
 
@@ -1695,6 +1695,10 @@ function buildSub(r) {
     return p[0].padStart(2,'0')+'/'+p[1].padStart(2,'0')+'/'+p[2];
   };
 
+  // Sunday=41-46, Mon=5-10, Tue=11-16, Wed=17-22, Thu=23-28, Fri=29-34, Sat=35-40
+  // Notes: col 47 (new form with Sunday) or col 41 (old form without Sunday)
+  const DAY_COL_BASE = {Sunday:41,Monday:5,Tuesday:11,Wednesday:17,Thursday:23,Friday:29,Saturday:35};
+
   const sub = {
 
     timestamp: g(0),
@@ -1707,21 +1711,21 @@ function buildSub(r) {
 
     totalHours: parseFloat(g(4))||0,
 
-    notes: g(r.length-1), // last col = week notes
+    notes: g(47)||g(41), // col 47 = Notes after Sunday added; col 41 = Notes in old form
 
     days: []
 
   };
 
-  for(let i=0;i<6;i++){
+  DAYS.forEach(dn=>{
 
-    const b = 5+i*6;
+    const b = DAY_COL_BASE[dn];
 
     const hrs = parseFloat(g(b+5));
 
     if(hrs>0) sub.days.push({
 
-      dayName: DAYS[i], date: g(b), job: g(b+1),
+      dayName: dn, date: g(b), job: g(b+1),
 
       start: g(b+2), end: g(b+3),
 
@@ -1731,7 +1735,7 @@ function buildSub(r) {
 
     });
 
-  }
+  });
 
   sub.totalHours = sub.days.reduce((s,d)=>s+d.hours,0);
 
@@ -2133,7 +2137,7 @@ function renderEmpTable(subs){
 
   if(wkMode){
 
-    thead.innerHTML='<tr><th style="text-align:left">Employee</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Regular</th><th style="color:#ff8a8a">OT</th><th>Total</th></tr>';
+    thead.innerHTML='<tr><th style="text-align:left">Employee</th><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Regular</th><th style="color:#ff8a8a">OT</th><th>Total</th></tr>';
 
     tbody.innerHTML=edata.map(e=>{
 
@@ -2173,7 +2177,7 @@ function renderEmpTable(subs){
 
     const tT=edata.reduce((s,e)=>s+e.totalHours,0);
 
-    tfoot.innerHTML='<tr class="tfr"><td colspan="7" style="text-align:left">Total &mdash; '+edata.length+' employees</td><td>'+tR.toFixed(1)+'</td><td style="color:'+(tO>0?'var(--rv)':'#ccc')+'">'+(tO>0?tO.toFixed(1):'—')+'</td><td>'+tT.toFixed(1)+'</td></tr>';
+    tfoot.innerHTML='<tr class="tfr"><td colspan="8" style="text-align:left">Total &mdash; '+edata.length+' employees</td><td>'+tR.toFixed(1)+'</td><td style="color:'+(tO>0?'var(--rv)':'#ccc')+'">'+(tO>0?tO.toFixed(1):'—')+'</td><td>'+tT.toFixed(1)+'</td></tr>';
 
   } else {
 
