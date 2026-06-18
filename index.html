@@ -977,7 +977,7 @@ const CSV_URL  = 'https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tq
 
 // Col layout: Timestamp(0) FirstName(1) LastName(2) WeekEnd(3) TotalHours(4)
 
-// Then per day Mon-Sat (i=0..5): base=5+i*6 => Date(+0) Job(+1) Start(+2) End(+3) Lunch(+4) Hours(+5)
+// Per day (Sun=5, Mon=13, ..., Sat=53, 8-col blocks): Date(+0) Job(+1) Start(+2) End(+3) LunchStart(+4) LunchDur(+5) Hours(+6) Notes(+7)
 
 // Last col: Week Notes
 
@@ -2576,7 +2576,7 @@ let activeTab='weekly';
 
 function switchTab(name){
 
-  const names=['weekly','trend','jobs','overtime','timecards'];
+  const names=['weekly','timecards','trend','jobs','overtime'];
 
   document.querySelectorAll('.tbtn').forEach((b,i)=>b.classList.toggle('active',names[i]===name));
 
