@@ -1687,6 +1687,14 @@ function buildSub(r) {
 
   const g = i => (r[i]||'').toString().trim();
 
+  // Normalize date to MM/DD/YYYY with leading zeros
+  const normDate = s => {
+    if (!s) return s;
+    const p = s.trim().split('/');
+    if (p.length !== 3) return s;
+    return p[0].padStart(2,'0')+'/'+p[1].padStart(2,'0')+'/'+p[2];
+  };
+
   const sub = {
 
     timestamp: g(0),
@@ -1695,7 +1703,7 @@ function buildSub(r) {
 
     fullName: (g(1)+' '+g(2)).trim(),
 
-    weekEnd:  g(3),
+    weekEnd: normDate(g(3)),
 
     totalHours: parseFloat(g(4))||0,
 
