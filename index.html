@@ -184,7 +184,58 @@ body{font-family:'DM Sans',sans-serif;background:var(--ob);color:var(--td);min-h
 .dpill{display:inline-block;background:var(--od);color:var(--wh);font-size:.7rem;font-weight:600;padding:2px 7px;border-radius:9px;text-transform:uppercase;letter-spacing:.04em;}
 .jchip{display:inline-block;background:var(--op);color:var(--od);font-size:.76rem;font-weight:600;padding:2px 7px;border-radius:4px;border:1px solid var(--br);max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle;}
 
-@media(max-width:900px){.krow{grid-template-columns:repeat(2,1fr);}.g2,.g31{grid-template-columns:1fr;}}
+/* TIME CARDS TAB */
+.tc-toolbar{background:var(--wh);border-radius:var(--ra);border:1.5px solid var(--br);box-shadow:var(--sh);padding:16px 18px;margin-bottom:20px;}
+.tc-emp-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.empbtn{padding:8px 16px;border-radius:20px;border:1.5px solid var(--br);background:var(--wh);font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;color:var(--tm);transition:all .15s;display:flex;align-items:center;gap:7px;}
+.empbtn .eini{width:26px;height:26px;border-radius:50%;background:var(--ob);color:var(--om);font-family:"Oswald",sans-serif;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.empbtn:hover{border-color:var(--ol);background:var(--ob);}
+.empbtn.active{border-color:var(--om);background:var(--om);color:var(--wh);}
+.empbtn.active .eini{background:rgba(255,255,255,.2);color:var(--wh);}
+.tc-range-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.tc-range-lbl{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tl);}
+.tc-range-btns{display:flex;gap:4px;flex-wrap:wrap;}
+.rbtn{padding:5px 13px;border-radius:14px;border:1.5px solid var(--br);background:var(--wh);font-family:"DM Sans",sans-serif;font-size:.8rem;font-weight:500;cursor:pointer;color:var(--tm);transition:all .13s;}
+.rbtn:hover{border-color:var(--ol);background:var(--ob);}
+.rbtn.active{border-color:var(--od);background:var(--od);color:var(--wh);font-weight:600;}
+.tc-showing{font-size:.78rem;color:var(--tl);margin-left:4px;}
+#tc-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:18px;}
+.tccard{background:var(--wh);border-radius:var(--ra);border:1.5px solid var(--br);box-shadow:var(--sh);overflow:hidden;}
+.tccard-hdr{padding:14px 18px;display:flex;align-items:center;gap:12px;border-bottom:1.5px solid var(--br);}
+.tccard-hdr.ot-week{border-left:4px solid var(--rv);}
+.tccard-hdr.reg-week{border-left:4px solid var(--ol);}
+.tccard-week{font-family:"Oswald",sans-serif;font-size:1rem;font-weight:600;color:var(--od);}
+.tccard-week span{font-size:.75rem;font-weight:400;color:var(--tl);margin-left:5px;font-family:"DM Sans",sans-serif;}
+.tccard-meta{display:flex;align-items:center;gap:8px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end;}
+.tc-hrs{font-family:"Oswald",sans-serif;font-size:1.1rem;font-weight:700;color:var(--od);}
+.tc-hrs.ot{color:var(--rv);}
+.tc-otchip{background:var(--rv);color:var(--wh);font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:9px;}
+.tc-note{display:inline-flex;align-items:center;gap:4px;background:var(--ob);border:1px solid var(--br);border-radius:12px;padding:2px 9px;font-size:.73rem;color:var(--tm);}
+.tc-note.sick{background:#fff8e1;border-color:#f9c74f;color:#7a5900;}
+.tc-note.ot-approved{background:#ffeaea;border-color:#c20002;color:#8a0001;}
+.tc-note.weather{background:#e8f0fe;border-color:#93c5fd;color:#1e40af;}
+.tc-note.training{background:#f3e8ff;border-color:#c084fc;color:#6b21a8;}
+.tccard-body{padding:0;}
+.tcday-tbl{width:100%;border-collapse:collapse;font-size:.83rem;}
+.tcday-tbl thead th{background:var(--ob);color:var(--tl);font-weight:600;font-size:.71rem;text-transform:uppercase;letter-spacing:.04em;padding:6px 10px;text-align:left;border-bottom:1px solid var(--br);}
+.tcday-tbl thead th:last-child{text-align:right;}
+.tcday-tbl td{padding:8px 10px;border-bottom:1px solid #f0f0f0;vertical-align:middle;}
+.tcday-tbl tr:last-child td{border-bottom:none;}
+.tcday-tbl td:last-child{text-align:right;font-weight:700;}
+.tcday-tbl tr:hover td{background:#f9fcf8;}
+.tc-daypill{display:inline-block;background:var(--od);color:var(--wh);font-size:.68rem;font-weight:600;padding:1px 7px;border-radius:8px;text-transform:uppercase;letter-spacing:.04em;min-width:28px;text-align:center;}
+.tc-joblbl{font-size:.8rem;color:var(--tm);}
+.tc-time{font-size:.78rem;color:var(--tl);white-space:nowrap;}
+.tc-lunch{font-size:.76rem;color:var(--tl);}
+.tccard-foot{padding:8px 12px;background:var(--ob);border-top:1.5px solid var(--br);display:flex;align-items:center;gap:16px;justify-content:flex-end;}
+.tcfoot-item{font-size:.78rem;color:var(--tl);}
+.tcfoot-item strong{color:var(--od);font-weight:700;}
+.tcfoot-item.red strong{color:var(--rv);}
+.tc-empty{text-align:center;padding:60px 20px;color:var(--tl);font-size:.9rem;grid-column:1/-1;}
+.tc-empty svg{width:40px;height:40px;margin:0 auto 12px;display:block;opacity:.25;}
+@media(max-width:640px){#tc-cards{grid-template-columns:1fr;}}
+
+@media(max-width:900px)@media(max-width:900px){.krow{grid-template-columns:repeat(2,1fr);}.g2,.g31{grid-template-columns:1fr;}}
 @media(max-width:600px){.krow{grid-template-columns:1fr 1fr;}.tbtn{font-size:.76rem;padding:7px 8px;}}
 </style>
 </head>
@@ -235,6 +286,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ob);color:var(--td);min-h
   <button class="tbtn" onclick="switchTab('trend')">&#128200; Trend &amp; History</button>
   <button class="tbtn" onclick="switchTab('jobs')">&#127968; Jobs Breakdown</button>
   <button class="tbtn" onclick="switchTab('overtime')">&#9888; Overtime</button>
+  <button class="tbtn" onclick="switchTab('timecards')">&#128196; Time Cards</button>
 </div>
 
 <div class="fbar">
@@ -336,6 +388,26 @@ body{font-family:'DM Sans',sans-serif;background:var(--ob);color:var(--td);min-h
     </div>
   </div>
 </div>
+</div>
+
+
+<!-- TIME CARDS TAB -->
+<div class="tp" id="tab-timecards">
+<div class="tc-toolbar">
+  <div class="tc-emp-row" id="tc-emp-btns"></div>
+  <div class="tc-range-row">
+    <span class="tc-range-lbl">Show:</span>
+    <div class="tc-range-btns">
+      <button class="rbtn active" onclick="setRange(5,this)">Last 5 Weeks</button>
+      <button class="rbtn" onclick="setRange(10,this)">Last 10</button>
+      <button class="rbtn" onclick="setRange(20,this)">Last 20</button>
+      <button class="rbtn" onclick="setRange(50,this)">Last 50</button>
+      <button class="rbtn" onclick="setRange(9999,this)">All Time</button>
+    </div>
+    <span class="tc-showing" id="tc-showing"></span>
+  </div>
+</div>
+<div id="tc-cards"></div>
 </div>
 
 </div></div>
@@ -1037,7 +1109,7 @@ function applyFilters(){
 // ═══ TABS ═════════════════════════════════════════════
 let activeTab='weekly';
 function switchTab(name){
-  const names=['weekly','trend','jobs','overtime'];
+  const names=['weekly','trend','jobs','overtime','timecards'];
   document.querySelectorAll('.tbtn').forEach((b,i)=>b.classList.toggle('active',names[i]===name));
   document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
@@ -1045,6 +1117,7 @@ function switchTab(name){
   if(name==='trend'){makeTrend();renderTrendTable();}
   if(name==='jobs')makeJEmpChart(_jobData);
   if(name==='overtime'){makeOTTrend();renderOTTbl(filteredSubs);}
+  if(name==='timecards')renderTimeCards();
 }
 
 // ═══ RENDER ALL ════════════════════════════════════════
@@ -1073,6 +1146,133 @@ function initDash(){
   document.getElementById('hact-d').style.display='flex';
   populateFilters();
   applyFilters();
+  initTimeCardsTab();
+}
+
+
+// ═══ TIME CARDS TAB ═══════════════════════════════════
+let tcEmp = null, tcRange = 5;
+
+function setRange(n, btn) {
+  tcRange = n;
+  document.querySelectorAll('.rbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTimeCards();
+}
+
+function setTcEmp(name, btn) {
+  tcEmp = name;
+  document.querySelectorAll('.empbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTimeCards();
+}
+
+function initTimeCardsTab() {
+  const emps = uniqEmps(allSubs);
+  const container = document.getElementById('tc-emp-btns');
+  container.innerHTML = emps.map(emp => {
+    const init = emp.split(' ').map(p=>p[0]).join('').slice(0,2).toUpperCase();
+    const wks  = allSubs.filter(s=>s.fullName===emp).length;
+    return '<button class="empbtn" onclick="setTcEmp(''+esc2(emp)+'',this)">'
+      +'<span class="eini">'+init+'</span>'
+      +esc(emp)
+      +'<span style="font-size:.72rem;color:inherit;opacity:.7">'+wks+'w</span>'
+      +'</button>';
+  }).join('');
+  // Default to first employee
+  if (emps.length && !tcEmp) {
+    tcEmp = emps[0];
+    container.querySelector('.empbtn').classList.add('active');
+  }
+}
+
+function noteClass(note) {
+  if (!note) return '';
+  const n = note.toLowerCase();
+  if (n.includes('sick'))     return 'sick';
+  if (n.includes('overtime') || n.includes('ot')) return 'ot-approved';
+  if (n.includes('weather'))  return 'weather';
+  if (n.includes('train'))    return 'training';
+  return '';
+}
+
+function renderTimeCards() {
+  if (!tcEmp) return;
+  const container = document.getElementById('tc-cards');
+
+  // Get this employee's submissions, sorted newest first
+  const subs = allSubs
+    .filter(s => s.fullName === tcEmp)
+    .sort((a,b) => pdate(b.weekEnd) - pdate(a.weekEnd))
+    .slice(0, tcRange === 9999 ? 9999 : tcRange);
+
+  const showing = document.getElementById('tc-showing');
+  showing.textContent = subs.length + ' submission' + (subs.length!==1?'s':'')
+    + ' for ' + tcEmp;
+
+  if (!subs.length) {
+    container.innerHTML = '<div class="tc-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>No submissions found for this employee.</p></div>';
+    return;
+  }
+
+  container.innerHTML = subs.map(sub => {
+    const ot = sub.otHours > 0;
+    const noteC = noteClass(sub.notes);
+
+    // Day rows
+    const dayRows = sub.days.map(d => {
+      return '<tr>'
+        +'<td><span class="tc-daypill">'+d.dayName.slice(0,3)+'</span></td>'
+        +'<td style="color:var(--tm);font-size:.78rem;white-space:nowrap">'+esc(d.date||'—')+'</td>'
+        +'<td class="tc-joblbl">'+esc(d.job||'—')+'</td>'
+        +'<td class="tc-time">'+fmtT(d.start)+' – '+fmtT(d.end)+'</td>'
+        +'<td class="tc-lunch">'+(d.lunch>0?d.lunch+'h lunch':'No lunch')+'</td>'
+        +'<td>'+d.hours.toFixed(2)+'</td>'
+        +'</tr>';
+    }).join('');
+
+    const noteChip = sub.notes
+      ? '<span class="tc-note '+noteC+'">'+esc(sub.notes)+'</span>'
+      : '';
+    const otChip = ot ? '<span class="tc-otchip">OVERTIME</span>' : '';
+
+    return '<div class="tccard">'
+      +'<div class="tccard-hdr '+(ot?'ot-week':'reg-week')+'">'
+        +'<div>'
+          +'<div class="tccard-week">Week Ending '+esc(sub.weekEnd)
+            +'<span>submitted '+fmtTs(sub.timestamp)+'</span></div>'
+        +'</div>'
+        +'<div class="tccard-meta">'
+          +noteChip+otChip
+          +'<div class="tc-hrs'+(ot?' ot':'')+'">'+sub.totalHours.toFixed(1)+' hrs</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="tccard-body">'
+        +'<table class="tcday-tbl">'
+          +'<thead><tr>'
+            +'<th>Day</th><th>Date</th><th>Job / Location</th>'
+            +'<th>Hours</th><th>Lunch</th><th>Total</th>'
+          +'</tr></thead>'
+          +'<tbody>'+dayRows+'</tbody>'
+        +'</table>'
+      +'</div>'
+      +'<div class="tccard-foot">'
+        +'<span class="tcfoot-item">Days worked: <strong>'+sub.days.length+'</strong></span>'
+        +'<span class="tcfoot-item">Regular: <strong>'+sub.regularHours.toFixed(1)+'h</strong></span>'
+        +(ot?'<span class="tcfoot-item red">Overtime: <strong>+'+sub.otHours.toFixed(1)+'h</strong></span>':'')
+        +'<span class="tcfoot-item">Total: <strong>'+sub.totalHours.toFixed(1)+'h</strong></span>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+function fmtTs(ts) {
+  if (!ts) return '—';
+  try {
+    const d = new Date(ts);
+    if (isNaN(d)) return ts;
+    return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  } catch(e) { return ts; }
 }
 
 // Auto-fetch on load
