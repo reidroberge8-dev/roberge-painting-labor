@@ -1695,9 +1695,16 @@ function buildSub(r) {
     return p[0].padStart(2,'0')+'/'+p[1].padStart(2,'0')+'/'+p[2];
   };
 
-  // Sunday=41-46, Mon=5-10, Tue=11-16, Wed=17-22, Thu=23-28, Fri=29-34, Sat=35-40
-  // Notes: col 47 (new form with Sunday) or col 41 (old form without Sunday)
-  const DAY_COL_BASE = {Sunday:41,Monday:5,Tuesday:11,Wednesday:17,Thursday:23,Friday:29,Saturday:35};
+  // Detect 1-col offset: old form has Week End at col 3; new form (after Sunday added) has it at col 4
+  const isDateStr = s => /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(s.trim());
+  const off = isDateStr(g(3)) ? 0 : (isDateStr(g(4)) ? 1 : 0);
+  // old (off=0): Sun=5-10(blank), Mon=11, Tue=17 ... Sat=41, Notes=47
+  // new (off=1): Sun=6-11,        Mon=12, Tue=18 ... Sat=42, Notes=48
+  const sunBase = 5 + off;
+  const DAY_COL_BASE = {
+    Sunday:sunBase, Monday:sunBase+6, Tuesday:sunBase+12, Wednesday:sunBase+18,
+    Thursday:sunBase+24, Friday:sunBase+30, Saturday:sunBase+36
+  };
 
   const sub = {
 
@@ -1707,11 +1714,11 @@ function buildSub(r) {
 
     fullName: (g(1)+' '+g(2)).trim(),
 
-    weekEnd: normDate(g(3)),
+    weekEnd: normDate(g(3+off)),
 
-    totalHours: parseFloat(g(4))||0,
+    totalHours: parseFloat(g(4+off))||0,
 
-    notes: g(47)||g(41), // col 47 = Notes after Sunday added; col 41 = Notes in old form
+    notes: g(47+off)||g(47),
 
     days: []
 
