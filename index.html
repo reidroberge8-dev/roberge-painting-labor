@@ -178,7 +178,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ob);color:var(--td);min-h
 
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
 
-.g31{display:grid;grid-template-columns:3fr 2fr;gap:18px;margin-bottom:18px;}
+.g31{display:flex;flex-direction:column;gap:18px;margin-bottom:18px;}
 
 .g1{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:18px;}
 
@@ -673,7 +673,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ob);color:var(--td);min-h
 
 <div class="tp active" id="tab-weekly">
 
-<div class="g31">
+<div class="g1">
 
   <div class="panel">
 
@@ -683,23 +683,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--ob);color:var(--td);min-h
 
   </div>
 
-  <div class="ecol">
+</div>
 
-    <div class="panel">
+<div class="g2">
 
-      <div class="ph"><div><h3>Hours by Employee</h3><div class="psub">Regular vs Overtime</div></div></div>
+  <div class="panel">
 
-      <div class="pb"><div class="cw"><canvas id="ch-emp"></canvas></div></div>
+    <div class="ph"><div><h3>Hours by Employee</h3><div class="psub">Regular vs Overtime</div></div></div>
 
-    </div>
+    <div class="pb"><div class="cw"><canvas id="ch-emp"></canvas></div></div>
 
-    <div class="panel">
+  </div>
 
-      <div class="ph"><h3>Overtime Alerts</h3></div>
+  <div class="panel">
 
-      <div class="pb" id="ot-cont"></div>
+    <div class="ph"><h3>Overtime Alerts</h3></div>
 
-    </div>
+    <div class="pb" id="ot-cont"></div>
 
   </div>
 
